@@ -46,22 +46,24 @@ def algebra():
         entry_c.grid(column=4, row=0, padx=10, pady=10)
 
         def decision():
+            try:
+                a = int(entry_a.get())
+                b = int(entry_b.get())
+                c = int(entry_c.get())
 
-            a = int(entry_a.get())
-            b = int(entry_b.get())
-            c = int(entry_c.get())
+                D = b ** 2 - (4 * a) * c
 
-            D = b ** 2 - (4 * a) * c
+                if D >= 0:
+                    x1 = (-b + m.sqrt(D)) / 2 * a
+                    x2 = (-b - m.sqrt(D)) / 2 * a
 
-            if D >= 0:
-                x1 = (-b + m.sqrt(D)) / 2 * a
-                x2 = (-b - m.sqrt(D)) / 2 * a
-
-                output.delete(0.0, END)
-                output.insert(0.0, f"Дискриминант равен {D} \nx1 = {x1} \nx2 = {x2}")
-            else:
-                output.delete(0.0, END)
-                output.insert(0.0, f"Дискриминант равен {D} \nУравнение не имеет решений.")
+                    output.delete(0.0, END)
+                    output.insert(0.0, f"Дискриминант равен {D} \nx1 = {x1} \nx2 = {x2}")
+                else:
+                    output.delete(0.0, END)
+                    output.insert(0.0, f"Дискриминант равен {D} \nУравнение не имеет решений.")
+            except:
+                messagebox.showerror('Ошибка!', "Убедитесь, что ввели все числа!")
 
         label_frame = LabelFrame(w, text='Решение')
         label_frame.pack(padx=10, pady=10)
@@ -69,7 +71,7 @@ def algebra():
         output = Text(label_frame, height=5)
         output.pack(padx=10, pady=10)
 
-        buttn = Button(text='Решить уравнение', command=decision)
+        buttn = Button(w, text='Решить уравнение', command=decision)
         buttn.pack(padx=10, pady=10)
 
     def algebra2():
@@ -78,13 +80,13 @@ def algebra():
         alpebra2.geometry('250x200')
 
         def root_of_num():
-        #     try:
+            try:
                 num = int(entry_int.get())
                 ans = m.sqrt(num)
-                print(ans)
+                entry_answer.delete(0, END)
                 entry_answer.insert(0, ans)
-            # except:
-            #     messagebox.showerror("Ошибка!", "Убедитесь в правильности введенного числа!")
+            except:
+                messagebox.showerror("Ошибка!", "Убедитесь в правильности введенного числа!")
 
 
         label_frame_int1 = LabelFrame(alpebra2, text='Введите число')
@@ -111,6 +113,9 @@ def algebra():
     bttn_algebra2 = Button(label_frame_algebra, text='Корень числа', command=algebra2)
     bttn_algebra2.pack(padx=5, pady=5)
 
+def geometry():
+    messagebox.showinfo('Coming soon', 'Тут пока ничего нету ＞﹏＜')
+
 
 
 
@@ -130,7 +135,7 @@ label_frame_choose.pack(pady=10)
 bttn_algebra = Button(label_frame_choose, text="Алгебра", command=algebra)
 bttn_algebra.grid(row=0, column=0, padx=5, pady=5)
 
-bttn_geometry = Button(label_frame_choose, text="Геометрия")
+bttn_geometry = Button(label_frame_choose, text="Геометрия", command=geometry)
 bttn_geometry.grid(row=0, column=1, padx=5, pady=5)
 
 bttn_check_update = Button(home_page, text="Проверить обновления", command=comming_soon)
@@ -140,7 +145,7 @@ label_version = Label(text='Версия 0.0.1')
 label_version.pack(side=BOTTOM)
 
 bttn_git = Button(home_page, text='GitHub', command=Git)
-bttn_git.pack(padx=5, pady=10)
+bttn_git.pack(padx=5, pady=30)
 
 
 home_page.mainloop()
