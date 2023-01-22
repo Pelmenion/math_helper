@@ -104,7 +104,7 @@ def algebra():
         bttn_show_answer = Button(alpebra2, text='Вычислить', command=root_of_num)
         bttn_show_answer.pack(pady=10)
 
-    label_frame_algebra = LabelFrame(algebra_page, text='Выберите')
+    label_frame_algebra = LabelFrame(algebra_page, text='Выберите:')
     label_frame_algebra.pack(padx=5, pady=5)
 
     bttn_algebra1 = Button(label_frame_algebra, text='Квадратные уравнения', command=algebra1)
